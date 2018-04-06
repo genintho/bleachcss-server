@@ -1,0 +1,58 @@
+version: '3'
+services:
+  web:
+    image: bleachcss_dwight
+    command: /app/node_modules/.bin/nodemon -d 1 -e js /app/dist/server.js
+    volumes:
+      - ./dist:/app/dist
+    ports:
+      - "8002:8002"
+    depends_on:
+     - redis
+    environment:
+#      - LOG_LEVEL=error
+     - REDIS_URL=redis
+
+
+  dwight:
+    image: bleachcss_dwight
+    command: /app/node_modules/.bin/nodemon -d 1 -e js /app/dist/jobs/generic_runner.js
+    volumes:
+      - ./dist:/app/dist
+      - ./sql:/app/sql
+    depends_on:
+     - redis
+     - db
+    environment:
+#      - LOG_LEVEL=error
+      - REDIS_URL=redis
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=
+      - DATABASE_NAME=bleachRails_development
+
+
+  db:
+    image: mysql:5.7
+    # volumes:
+      # - /tmp/db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=bleachRails_development
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
+
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin:latest
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #    - db
+
+
+  redis:
+    image: redis:alpine
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"

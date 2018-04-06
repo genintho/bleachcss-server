@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "es6",
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "sourceMap": false,
+        "outDir": "dist/",
+        "strict": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["**/*/__tests__/**/*"],
+    "types": ["jest", "winston"]
+}

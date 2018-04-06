@@ -1,0 +1,67 @@
+{
+  "name": "bleachcss",
+  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "main": "dist/jobs/generic_runner.js",
+  "engines": {
+    "node": "9.*"
+  },
+  "repository": {},
+  "devDependencies": {
+    "nodemon": "1.11.0",
+    "prettier": "^1.11.1",
+    "ts-jest": "22.4.2"
+  },
+  "dependencies": {
+    "@octokit/rest": "15.2.6",
+    "@types/jest": "22.2.2",
+    "@types/node": "9.6.1",
+    "@types/winston": "2.3.8",
+    "bleachcss-probe": "^1.0.2",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "fs-extra": "2.1.2",
+    "jest": "22.4.3",
+    "kue": "0.11.6",
+    "lodash": "4.17.5",
+    "moment": "2.21.0",
+    "mysql": "^2.15.0",
+    "pm2": "^2.4.6",
+    "postcss": "6.0.21",
+    "postcss-nested": "3.0.0",
+    "postcss-safe-parser": "3.0.1",
+    "request": "2.85.0",
+    "request-promise-native": "1.0.5",
+    "sqlite3": "4.0.0",
+    "targz": "1.0.1",
+    "typescript": "2.8.1",
+    "winston": "2.4.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "heroku-postbuild": "node node_modules/.bin/tsc"
+  },
+  "jest": {
+    "automock": false,
+    "testEnvironment": "node",
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*\\.test\\.ts$",
+    "testPathIgnorePatterns": [
+      "dist/",
+      "/node_modules/"
+    ],
+    "roots": [
+      "<rootDir>/dwight/src/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
+}
